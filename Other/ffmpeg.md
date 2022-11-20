@@ -55,7 +55,7 @@ ffmpeg -f v4l2 -s 1920*1080 -r 30 -i /dev/video0 -r 30 -c:v:0 libx264 -t 30 out.
 -t 录制时长
 ```
 
-## 调用摄像头格式
+## 调用摄像头的格式
 
 ```shell
 ffmpeg -f v4l2 -input_format mjpeg -s 1920*1080 -r 30 -i /dev/video0 -r 30 -c:v libx264 -t 30 out.mp4
