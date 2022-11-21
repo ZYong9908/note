@@ -32,7 +32,7 @@ gst-launch-1.0 v4l2src device=/dev/video0 ! videoconvert ! video/x-raw,format=NV
 gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=1920,height=1080,framerate=30/1 ! jpegdec ! videoconvert ! queue ! mpph264enc ! queue ! h264parse ! mpegtsmux ! filesink location=/path/out.mp4
 ```
 
-### 解决颜色异常
+### 解决 MJPG 颜色异常
 
 ```shell
 gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=1920,height=1080,framerate=30/1 ! jpegdec ! videoconvert ! video/x-raw,format=NV12,width=1920,height=1080,framerate=30/1 ! queue ! mpph264enc ! queue ! h264parse ! mpegtsmux ! filesink location=/path/out.mp4

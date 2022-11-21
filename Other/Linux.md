@@ -12,6 +12,14 @@ shell cmd  > /dev/null 2>&1
 wget https://down.con/down.tar.gz
 ```
 
+## 查看磁盘使用
+
+```shell
+df -h
+```
+
+
+
 # 解压缩
 
 ## 压缩
