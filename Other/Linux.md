@@ -18,6 +18,14 @@ wget https://down.con/down.tar.gz
 df -h
 ```
 
+## 网络
+
+### 查看网络配置
+
+```shell
+ifconfig
+```
+
 
 
 # 解压缩
@@ -108,3 +116,18 @@ cmake .. -D CMAKE_BUILD_TYPE=RELEASE -D PENCV_EXTRA_MODULES_PATH=/opencv_contrib
 ```shell
 v4l2-ctl --list-formats-ext -d /dev/video0	
 ```
+
+# 蓝牙
+
+## pybluze
+
+```shell
+sudo apt-get install libbluetooth-dev
+```
+
+```shell
+pip install pybluze
+```
+
+
+
