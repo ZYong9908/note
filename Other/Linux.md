@@ -60,35 +60,71 @@ tar -tf all.tar
 ### bz2
 
 - 解压1：
-  - bzip2 -d filename.bz2
+  
+  ```shell
+  bzip2 -d filename.bz2
+  ```
+  
 - 解压2：
-  - bunzip2 filename.bz2
+  
+  ```shell
+  bunzip2 filename.bz2
+  ```
+  
 - 压缩：
-  - bzip2 -z filename
+  
+  ```shell
+  bzip2 -z filename
+  ```
 
 ### tar.bz2
 
-- 解压：tar jxvf filename.tar.bz2
-- 压缩：tar jcvf filename.tar.bz2 dirname
+- 解压：
+
+  ```shell
+  tar jxvf filename.tar.bz2
+  ```
+
+- 压缩：
+
+  ```shell
+  tar jcvf filename.tar.bz2 dirname
+  ```
 
 ### bz
 
 - 解压1：
-  - bzip2 -d filename.bz
+  
+  ```shell
+  bzip2 -d filename.bz
+  ```
+  
 - 解压2：
-  - bunzip2 filename.bz
+  
+  ```shell
+  bunzip2 filename.bz
+  ```
 
 ### tar.bz
 
 - 解压：
-  - tar jxvf filename.tar.bz
+  
+  ```shell
+  tar jxvf filename.tar.bz
+  ```
 
 ### zip
 
 - 解压：
-  - unzip filename.zip
+  
+  ```shell
+  unzip filename.zip
+  ```
 - 压缩：
-  - zip filename.zip dirname
+  
+  ```shell
+  zip filename.zip dirname
+  ```
 
 # 编译
 
@@ -106,5 +142,5 @@ cmake .. -D CMAKE_BUILD_TYPE=RELEASE -D PENCV_EXTRA_MODULES_PATH=/opencv_contrib
 ## 查看指定相机的输出图像格式及对应分辨率
 
 ```shell
-v4l2-ctl --list-formats-ext -d /dev/video0	
+v4l2-ctl --list-formats-ext -d /dev/video0
 ```
