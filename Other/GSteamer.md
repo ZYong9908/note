@@ -1,5 +1,7 @@
 # GSteamer
 
+- mpph264enc 为硬件解码，不支持需更换对应解码
+
 ## 测试
 
 ### 参数
@@ -35,7 +37,7 @@ gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=1920,height=1080,fr
 ### 解决 MJPG 颜色异常
 
 ```shell
-gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=1920,height=1080,framerate=30/1 ! jpegdec ! videoconvert ! video/x-raw,format=NV12,width=1920,height=1080,framerate=30/1 ! queue ! mpph264enc ! queue ! h264parse ! mpegtsmux ! filesink location=/path/out.mp4
+gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=1920,height=1080,framerate=30/1 ! jpegdec ! videoconvert ! video/x-raw,format=NV12 ! queue ! mpph264enc ! queue ! h264parse ! mpegtsmux ! filesink location=/path/out.mp4
 ```
 
 
@@ -58,8 +60,17 @@ gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=1920,height=1080,fr
 
 ### 动态时间水印
 
+- `font-desc` 字体大小
+- `shaded-background` 背景
+- valignment 位置（上下）
+- halignment 位置（左右）
+
+-------------------------
+
+​	`font-desc`和`shaded-background`会占用cpu，低性能设备上会影响帧率
+
 ```shell
-gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=1920,height=1080,framerate=30/1 ! jpegdec ! videoconvert ! video/x-raw,format=NV12,width=1920,height=1080,framerate=30/1 ! clockoverlay time-format="%Y/%m/%d %H:%M:%S" ! queue ! mpph264enc ! queue ! h264parse ! flvmux ! rtmpsink location='rtmp://127.0.0.1:5002/live'
+gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=1920,height=1080,framerate=30/1 ! jpegdec ! clockoverlay halignment=right valignment=top shaded-background=false font-desc='8' time-format="%Y-%m-%d %H:%M:%S" ! videoconvert ! video/x-raw,format=NV12,width=1920,height=1080,framerate=30/1 ! queue ! mpph264enc ! queue ! h264parse ! flvmux ! rtmpsink location='rtmp://127.0.0.1:5002/live'
 ```
 
 ## 多通道
@@ -85,6 +96,7 @@ out_2.mp4
 ## 爱称拍-推流并按时长录制
 
 ```shell
-gst-launch-1.0 -e v4l2src device=/dev/video0 ! image/jpeg,width=1920,height=1080,framerate=30/1 ! jpegdec ! videoconvert ! video/x-raw,format=NV12,width=1920,height=1080,framerate=30/1 ! clockoverlay time-format=\"%Y/%m/%d %H:%M:%S\" ! queue ! mpph264enc ! queue ! h264parse ! tee name=t t. ! queue ! flvmux ! rtmpsink location='rtmp://127.0.0.1:5002/live' t. ! queue ! splitmuxsink location=/path/out_%d.mp4 max-size-time=11000000000 async-finalize=TRUE
+gst-launch-1.0 -e v4l2src device=/dev/video0 ! image/jpeg,width=1920,height=1080,framerate=30/1 ! jpegdec ! clockoverlay halignment=right shaded-background=false font-desc='8' time-format="%Y-%m-%d %H:%M:%S" ! videoconvert ! video/x-raw,format=NV12 ! queue ! mpph264enc ! queue ! h264parse ! tee name=t t. ! queue ! splitmuxsink location=/path/out_%d.mp4 max-size-time=11000000000 async-finalize=TRUE t. ! queue ! flvmux ! rtmpsink location='rtmp://127.0.0.1:5002/live'
 ```
 
+gst-launch-1.0 -e v4l2src device=/dev/video0 ! image/jpeg,width=1920,height=1080,framerate=30/1 ! jpegdec ! clockoverlay halignment=right shaded-background=false font-desc='8' time-format="%Y-%m-%d %H:%M:%S" ! videoconvert ! video/x-raw,format=NV12 ! queue ! mpph264enc ! queue ! h264parse ! tee name=t t. ! queue ! splitmuxsink location=/home/ztl/Videos/test_out_%d.mp4 max-size-time=11000000000 async-finalize=FALSE t. ! queue ! flvmux ! rtmpsink location='rtmp://127.0.0.1:5002/live'

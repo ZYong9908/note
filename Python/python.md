@@ -122,5 +122,54 @@ logger.add("test_4.log", retention="5 days")  # 只保留最近五天的日志�
 logger.add("test_5.log", compression="zip")    # 以zip格式对日志进行保存
 ```
 
+# pip
+
+## 安装
+
+```shell
+pip install packagename
+```
+
+## 安装requirement
+
+```shell
+pip install -r requirements.txt
+```
+
+## 指定python版本
+
+```shell
+python3 -m pip install -r requirements.txt
+```
+
+# 多线程
+
+```python
+from threading import Thread
+def asyncs(f):
+    def wrapper(*args, **kwargs):
+        thr = Thread(target=f, args=args, kwargs=kwargs)
+        thr.start()
+
+    return wrapper
+@asyncs
+def fun():
+    print('fun')
+```
+
+# 多进程
+
+```python
+import multiprocessing
+def fun(str):
+    print(str)
+p = multiprocessing.Process(target=fun, args=('fun'))
+p.start()
+```
+
+
+
+
+
 
 
