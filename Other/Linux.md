@@ -145,7 +145,7 @@ cmake .. -D CMAKE_BUILD_TYPE=RELEASE -D PENCV_EXTRA_MODULES_PATH=/opencv_contrib
 -D 后空格是否保留
 ```
 
-# v4l2(Video for linux2)
+# v4l2 (Video for linux2)
 
 ## 查看指定相机的输出图像格式及对应分辨率
 

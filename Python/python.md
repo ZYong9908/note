@@ -130,13 +130,13 @@ logger.add("test_5.log", compression="zip")    # 以zip格式对日志进行保�
 pip install packagename
 ```
 
-## 安装requirement
+## 安装 requirement
 
 ```shell
 pip install -r requirements.txt
 ```
 
-## 指定python版本
+## 指定 python 版本
 
 ```shell
 python3 -m pip install -r requirements.txt
