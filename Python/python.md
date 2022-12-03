@@ -48,6 +48,20 @@ print({True: "More", False: "Less"}[a > b]) # 运行结果为：Less
 print(("FalseValue", "TrueValue")[a > b]) # 运行结果为：FalseValue
 ```
 
+## 跳出两层循环
+
+```python
+for i in range(5):
+    for j in range(10):
+        if j > 7:
+            break
+	else:
+        continue
+	break
+```
+
+-  在内层中如果不是`break`，则外层循环走`else: continue`；如果内层`break`跳出后，外层循环就不走`else: continue`了，而是走的`break`，这样就跳出了两层循环。所以这个本质上还是一层一层的跳出循环。
+
 # 文件操作
 
 ## 写入一行
@@ -130,13 +144,13 @@ logger.add("test_5.log", compression="zip")    # 以zip格式对日志进行保�
 pip install packagename
 ```
 
-## 安装requirement
+## 安装 requirement
 
 ```shell
 pip install -r requirements.txt
 ```
 
-## 指定python版本
+## 指定 python 版本
 
 ```shell
 python3 -m pip install -r requirements.txt

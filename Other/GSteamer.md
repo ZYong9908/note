@@ -98,5 +98,3 @@ out_2.mp4
 ```shell
 gst-launch-1.0 -e v4l2src device=/dev/video0 ! image/jpeg,width=1920,height=1080,framerate=30/1 ! jpegdec ! clockoverlay halignment=right shaded-background=false font-desc='8' time-format="%Y-%m-%d %H:%M:%S" ! videoconvert ! video/x-raw,format=NV12 ! queue ! mpph264enc ! queue ! h264parse ! tee name=t t. ! queue ! splitmuxsink location=/path/out_%d.mp4 max-size-time=11000000000 async-finalize=TRUE t. ! queue ! flvmux ! rtmpsink location='rtmp://127.0.0.1:5002/live'
 ```
-
-gst-launch-1.0 -e v4l2src device=/dev/video0 ! image/jpeg,width=1920,height=1080,framerate=30/1 ! jpegdec ! clockoverlay halignment=right shaded-background=false font-desc='8' time-format="%Y-%m-%d %H:%M:%S" ! videoconvert ! video/x-raw,format=NV12 ! queue ! mpph264enc ! queue ! h264parse ! tee name=t t. ! queue ! splitmuxsink location=/home/ztl/Videos/test_out_%d.mp4 max-size-time=11000000000 async-finalize=FALSE t. ! queue ! flvmux ! rtmpsink location='rtmp://127.0.0.1:5002/live'

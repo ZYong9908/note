@@ -145,7 +145,7 @@ cmake .. -D CMAKE_BUILD_TYPE=RELEASE -D PENCV_EXTRA_MODULES_PATH=/opencv_contrib
 -D 后空格是否保留
 ```
 
-# v4l2(Video for linux2)
+# v4l2 (Video for linux2)
 
 ## 查看指定相机的输出图像格式及对应分辨率
 
@@ -163,6 +163,33 @@ sudo apt-get install libbluetooth-dev
 
 ```shell
 pip install pybluze
+```
+
+# 网络
+
+## 查看状态
+
+### ifconfig
+
+- 最常用的配置和查看网络接口信息的命令，服务器上执行此命令会得到类下文的内容，一下内容可看到多个设备和设备状态、信息。
+
+### 查看无线网络状态
+
+- iwconfig
+
+## 热点 create_ap
+
+- https://github.com/oblique/create_ap
+
+```shell
+create_ap -n wlan0 nova-car-wifi nova123456 --no-virt
+create_ap --stop nova-car-wifi
+```
+
+## 连接 wifi
+
+```shell
+sudo nmcli dev wifi connect "DESKTOP-84VRIRM 8964" password "12345678" ifname wlan0
 ```
 
 
