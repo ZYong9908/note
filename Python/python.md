@@ -48,6 +48,19 @@ print({True: "More", False: "Less"}[a > b]) # 运行结果为：Less
 print(("FalseValue", "TrueValue")[a > b]) # 运行结果为：FalseValue
 ```
 
+## 跳出两层循环
+
+```python
+for i in rangr(10):
+    for j in range(10):
+        if j == 6:
+            break
+    else:
+        break
+```
+
+
+
 # 文件操作
 
 ## 写入一行
