@@ -51,15 +51,16 @@ print(("FalseValue", "TrueValue")[a > b]) # 运行结果为：FalseValue
 ## 跳出两层循环
 
 ```python
-for i in rangr(10):
+for i in range(5):
     for j in range(10):
-        if j == 6:
+        if j > 7:
             break
-    else:
-        break
+	else:
+        continue
+	break
 ```
 
-
+-  在内层中如果不是`break`，则外层循环走`else: continue`；如果内层`break`跳出后，外层循环就不走`else: continue`了，而是走的`break`，这样就跳出了两层循环。所以这个本质上还是一层一层的跳出循环。
 
 # 文件操作
 
