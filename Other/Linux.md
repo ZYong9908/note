@@ -182,7 +182,7 @@ pip install pybluze
 - https://github.com/oblique/create_ap
 
 ```shell
-create_ap -n wlan0 nova-car-wifi nova123456 --no-virt
+create_ap -n wlan0 nova-car-wifi nova123456 -g 192.168.12.1 --no-virt
 create_ap --stop nova-car-wifi
 ```
 
@@ -192,5 +192,41 @@ create_ap --stop nova-car-wifi
 sudo nmcli dev wifi connect "DESKTOP-84VRIRM 8964" password "12345678" ifname wlan0
 ```
 
+## HOST
 
+```shell
+sudo vim /etc/hosts
+```
+
+# 声音
+
+## 查看声卡
+
+```shell
+cat /proc/asound/cards
+```
+
+## 设置默认声卡
+
+- /etc/asound.conf
+
+```shell
+sudo vim /etc/asound.conf
+```
+
+```
+pcm.!default {
+type hw
+card rockchiprk809co
+}
+
+ctl.!default {
+type hw
+card rockchiprk809co
+}
+----------或------------
+defaults.ctl.card 1
+defaults.pcm.card 1
+defaults.timer.card 1
+```
 

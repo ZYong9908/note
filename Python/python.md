@@ -15,7 +15,7 @@ os.system('shell')
 ```python
 os.popen('shell')
 ======
-返回一个含有read方法的对象
+返回一个含有read方法的对象（异步）
 ```
 
 ### 获取执行后结果
