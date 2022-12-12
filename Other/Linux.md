@@ -196,6 +196,22 @@ sudo vim /etc/hosts
 cat /proc/asound/cards
 ```
 
+## 得到当前系统可用麦克风的设备名称
+
+```shell
+arecord -l
+----------
+arecord -l | awk -F \: '/,/{print $2}' | awk '{print $1}' | uniq
+```
+
+## 得到当前系统可用扬声器的设备名称
+
+```shell
+cat /proc/asound/cards
+```
+
+
+
 ## 设置默认声卡
 
 - /etc/asound.conf

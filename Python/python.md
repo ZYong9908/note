@@ -181,5 +181,53 @@ p = multiprocessing.Process(target=fun, args=('fun'))
 p.start()
 ```
 
+# Flask
 
+## 非测试环境
+
+```python
+from wsgiref.simple_server import make_server
+server = make_server('0.0.0.0', 5000, app)
+server.serve_forever()
+```
+
+## Flask-sockets
+
+```python
+from flask_sockets import Sockets
+from gevent import pywsgi
+from geventwebsocket.handler import WebSocketHandler
+
+app = Flask(__name__)
+sockets = Sockets(app)
+
+
+# socket 路由，访问url是： ws://localhost:5000/echo
+@sockets.route('/echo')
+def echo_socket(ws):
+    while not ws.closed:
+        message = ws.receive()
+        ws.send("come from web server: " + str(message))
+        
+        
+if __name__ == "__main__":
+    server = pywsgi.WSGIServer(('', 5000), app, handler_class=WebSocketHandler)
+    print("web server start ... ")
+    server.serve_forever()
+```
+
+# websocket-client
+
+```python
+pip install websocket-client
+------------------
+from websocket import create_connection
+
+# 通过socket路由访问
+ws = create_connection("ws://url:port/route/")
+ws.send("Hello, ws")
+result = ws.recv()
+print(result)
+ws.close()
+```
 
