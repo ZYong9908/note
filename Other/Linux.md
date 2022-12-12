@@ -18,16 +18,6 @@ wget https://down.con/down.tar.gz
 df -h
 ```
 
-## 网络
-
-### 查看网络配置
-
-```shell
-ifconfig
-```
-
-
-
 # 解压缩
 
 ## 压缩
