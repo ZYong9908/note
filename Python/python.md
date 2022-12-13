@@ -231,3 +231,36 @@ print(result)
 ws.close()
 ```
 
+## 长连接+心跳
+
+```python
+import websocket
+
+
+def on_message(ws, message):
+    print('socket message: {}'.format(message))
+
+
+def on_data(ws, data, opcode, is_masked):
+    print('socket data: {}'.format(data))
+
+
+def on_error(ws, error):
+    print('socket error: ' + str(error))
+
+
+def on_close(ws, close_status_code, close_msg):
+    print('socket close, close_status_code: ' + str(close_status_code) + ', close_msg: ' + str(close_msg))
+
+
+def on_open(ws):
+    print('socket connected')
+
+
+if __name__ == "__main__":
+    websocket.enableTrace(True)
+    ws = websocket.WebSocketApp(env_websocket_url + env_device_id, on_message=on_message, on_error=on_error,							on_close=on_close, on_open=on_open, on_data=on_data)
+    ws.on_open = on_open
+    ws.run_forever(ping_interval=3, ping_timeout=2)
+```
+
