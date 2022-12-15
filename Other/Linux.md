@@ -18,6 +18,20 @@ wget https://down.con/down.tar.gz
 df -h
 ```
 
+## 重命名
+
+```shell
+mv name1.txt name2.txt
+```
+
+## 查看cpu Serial
+
+```shell
+cat /proc/cpuinfo
+```
+
+
+
 # 解压缩
 
 ## 压缩
