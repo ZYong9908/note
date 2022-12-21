@@ -61,3 +61,33 @@ this.$router.push({ name: 'name', params: { id: '123', data: '456' } })
 this.$route.params.xxx
 ```
 
+##  同一个页面地址栏参数改变，页面不刷新的问题解决方案
+
+### 1.监听地址栏变化（watch）,这是vue-router官方给出的解决办法
+
+```js
+watch: {
+    $route(to, from) {
+        if (this.$route.query.参数) {
+             重新加载一次created或者mounted钩子中的渲染的数据
+        }
+      },
+    // 或者
+    $route(){
+         if (this.$route.query.参数) {
+             重新加载一次created或者mounted钩子中的渲染的数据
+         }
+       }, 
+    },
+```
+
+### 2.给router-view加个唯一的key
+
+```vue
+<template>
+	<div>
+    <router-view :key='this.$route.fullpath' />
+    </div>
+</template>
+```
+
