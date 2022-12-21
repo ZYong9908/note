@@ -417,3 +417,24 @@ def set_config(key, value):
     config.write(open(base_path, 'w', encoding='utf-8'))
 ```
 
+# 监听键盘
+
+```shell
+pip install pynput
+```
+
+```python
+from pynput import keyboard
+def on_press(key):
+    print(key)
+if __name__ == "__main__":
+    with keyboard.Listener(on_press=on_press) as lsn:
+        lsn.join()
+```
+
+```shell
+linux:
+sudo apt-get install python3-tk
+sudo apt install tk-dev
+```
+
