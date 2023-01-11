@@ -37,7 +37,6 @@ rtmp {
 
 ```nginx
 http {
-    include /etc/nginx/server/;
 	server {
 	    listen 5001;
 	    server_name localhost;

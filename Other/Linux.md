@@ -188,6 +188,7 @@ pip install pybluze
 ```shell
 create_ap -n wlan0 nova-car-wifi nova123456 -g 192.168.12.1 --no-virt
 create_ap --stop nova-car-wifi
+create_ap -n wlan0 nova-car-wifi nova123456 -g 192.168.12.1 --no-virt -d
 ```
 
 ## 连接 wifi

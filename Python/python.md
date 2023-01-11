@@ -438,3 +438,26 @@ sudo apt-get install python3-tk
 sudo apt install tk-dev
 ```
 
+# 函数超时
+
+```python
+pip install func_timeout
+---------------
+import func_timeout
+func_timeout.func_timeout(10, function_name)
+-------或---------
+@func_timeout.func_set_timeout(10)
+def function_name():
+    pass
+```
+
+## 超时处理
+
+```python
+import func_timeout
+try:
+    func_timeout.func_timeout(10, function_name)
+except func_timeout.exceptions.FunctionTimedOut as e:
+    pass
+```
+
